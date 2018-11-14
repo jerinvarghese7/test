@@ -1,0 +1,6 @@
+if (( $(ps aux  | grep gpg | grep -v grep | awk -F ' ' '{print $2}' | wc -l) > 0 ))
+then
+echo "gpg is running"
+else
+echo "gpg is not running"
+fi

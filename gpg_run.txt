@@ -1,0 +1,5 @@
+
+
+ ps aux  | grep gpg | grep -v grep | awk -F ' ' '{print $2}' | xargs kill -9
+ 
+ gpg-agent --daemon --use-standard-socket

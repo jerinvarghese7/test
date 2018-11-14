@@ -1,0 +1,4 @@
+AuthUser=fs-jira
+AuthPass=F$@2018$teck38
+AuthMethod=LOGIN
+FromLineOverride=YES

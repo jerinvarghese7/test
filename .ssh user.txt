@@ -1,0 +1,22 @@
+http://stackoverflow.com/questions/25966422/ec2-create-new-linux-users-with-their-own-key-pairs
+
+
+Create the user:
+
+# useradd michael
+Generate a key pair for him:
+
+# ssh-keygen -b 2048 -t rsa -f key -C michael
+Above command will create tow files: key and key.pub
+
+Create .ssh directory for michael and copy the .pub file as below:
+
+# su - michael
+# mkdir .ssh && cd .ssh
+# cat > authorized_keys < key.pub
+# chmod 0700 ~/.ssh; chmod 0600 ~/.ssh/authorized_keys
+Handover key to michael. This is nothing but the private key. Usually AWS appends .pem to the private keys.
+
+Now michael can login with private key key as below:
+
+ssh -i key michael@<ec2_host_name>
