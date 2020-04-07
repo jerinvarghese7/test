@@ -1,9 +1,0 @@
----
-- hosts: host2
-  tasks:
-  - name:
-    synchronize:
-#      src: "rsync://192.168.56.103:/tmp/newtest"
-      src: /tmp/newtest1
-      dest: /tmp
-    delegate_to: host3
