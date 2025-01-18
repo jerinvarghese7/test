@@ -1,0 +1,64 @@
+pipeline {
+    agent any  // This indicates that the pipeline can run on any available agent (node)
+
+    environment {
+        // Define any environment variables here
+        MY_VAR = 'SomeValue'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the repository
+                git 'https://github.com/your-repo/project.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Run the build commands (for example, using Maven or Gradle)
+                script {
+                    // Replace with your actual build command
+                    echo 'Building the project...'
+                    sh './gradlew build'  // This is for a Gradle project, modify if necessary
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests (e.g., unit tests or integration tests)
+                script {
+                    // Replace with your actual testing command
+                    echo 'Running tests...'
+                    sh './gradlew test'  // Assuming Gradle-based tests
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy the application
+                script {
+                    // Replace with your deployment logic
+                    echo 'Deploying the project...'
+                    // For example, deploy to a server or cloud service
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+
+        failure {
+            echo 'Pipeline failed.'
+        }
+
+        always {
+            echo 'This will always run, regardless of the pipeline result.'
+        }
+    }
+}
